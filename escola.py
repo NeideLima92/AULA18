@@ -11,7 +11,7 @@ class Escola:
 
     def editarAluno(self, aluno:Aluno):
         for alu in self.alunos:
-            if alu.matricula == aluno.matricula:
+            if str(alu.matricula) == str(aluno.matricula):
                 alu.nome = aluno.nome
                 alu.idade = aluno.idade
                 alu.curso = aluno.curso
