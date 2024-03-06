@@ -42,7 +42,7 @@ class App:
         self.button_Adicionar.grid(row=5, column=0)
 
         self.button_Editar = Button(self.janela, text="Editar", font="Calibri 12 bold", fg="Black",
-                           background="PaleGoldenrod", width=10)
+                           background="PaleGoldenrod", width=10, command=self.editarAluno)
         self.button_Editar.grid(row=5, column=1)
 
         self.button_Excluir = Button(self.janela, text="Excluir", font="Calibri 12 bold", fg="Black",
@@ -118,5 +118,24 @@ class App:
         print(self.escola.alunos)
         self.limparCampos()
         self.atualizarTabela()
+
+    def editarAluno(self):
+        matricula = self.txt_matricula.get()
+        nome = self.txt_nome.get()
+        idade = int(self.txt_idade.get())
+        curso = self.combo_cursos.get()
+        nota = float(self.txt_nota.get())
+        aluno = Aluno(nome, idade, curso, nota)
+        aluno.matricula= matricula
+        opcao = messagebox.askyesno("Tem certeza?", "Deseja alterar os dados?")
+        if opcao:
+            self.escola.editarAluno(aluno)
+            messagebox.showinfo("Sucesso!", "Dados alterados com sucesso!")
+        print(self.escola.alunos)
+        self.limparCampos()
+        self.atualizarTabela()
+
+
+
 
 App("CEI Menino Jesus")
